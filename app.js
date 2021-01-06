@@ -3,12 +3,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const multer = require('multer');
+const cors = require('cors')
 
 const authRoutes = require('./routes/auth');
 const productRoutes = require('./routes/products');
 const errorRoutes = require('./routes/error');
 
 const app = express();
+
+app.use(cors())
 
 const fileStorage = multer.diskStorage({
 	destination: (req, file, cb) => {
@@ -38,7 +41,7 @@ app.use(multer({storage: fileStorage, fileFilter: fileFilter}).single('image'));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use((req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Origin', 'https://ecom-front-three.vercel.app/');
 	res.setHeader('Access-Control-Allow-Methods', '*');
 	res.setHeader('Access-Control-Allow-Headers', '*');
 	next();
