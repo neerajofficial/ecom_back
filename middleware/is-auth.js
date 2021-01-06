@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
 	let decodedToken;
 
 	try {
-		decodedToken = jwt.verify(token, 'secret');
+		decodedToken = jwt.verify(token, 'SECRET');
 	} catch (err) {
 		const error = new Error('Not Authorized');
 		err.statusCode = 401;
