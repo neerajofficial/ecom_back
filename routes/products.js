@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/auth-products', isAuth, productController.getProducts);
 
-router.post('/add-product', isAuth, [
+router.post('/add-product', [
 		body('prod_name')
 			.trim()
 			.isLength({min: 5}),
